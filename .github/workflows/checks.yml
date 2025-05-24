@@ -1,0 +1,19 @@
+name: Checks
+
+on: [push]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Set up uv
+      run: |
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+    - name: Set up task
+      run: |
+        sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+    - name: Run checks
+      run: |
+        ./bin/task check
