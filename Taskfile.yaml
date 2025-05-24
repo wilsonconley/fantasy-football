@@ -9,7 +9,12 @@ tasks:
     desc: Run CI checks
     cmds:
       - task: lint
+      - task: typecheck
   lint:
     desc: Run lint
     cmds:
       - ruff check
+  typecheck:
+    desc: Run typecheck
+    cmds:
+      - mypy .
