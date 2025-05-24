@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import contextlib
 import typing as t
+from dataclasses import dataclass
 
 import selenium.webdriver.support.expected_conditions as EC
 from selenium import webdriver
@@ -28,14 +29,38 @@ def ensure_clickable(
     return element
 
 
+@dataclass(frozen=True)
+class Player:
+    name: str
+    rank: int
+    pts: float
+
+
+def parse_player_row(player_row: WebElement) -> Player:
+    return Player(
+        name=player_row.find_element(By.CLASS_NAME, "player-cell-name").text,
+        rank=int(player_row.find_element(By.CLASS_NAME, "sticky-cell-one").text),
+        # "proj_pts": float(player_row.find_element(By.CLASS_NAME, "player-pts").text),
+        pts=0.0,
+    )
+
+
 def main():
     with selenium_driver() as driver:
-        driver.get("https://selenium.dev/documentation")
-        assert "Selenium" in driver.title
+        # Go to the rankings page
+        driver.get("https://www.fantasypros.com/nfl/rankings/qb.php")
+        assert "Fantasy Football Rankings" in driver.title
 
-        elem = driver.find_element(By.ID, "m-documentationwebdriver")
-        elem.click()
-        assert "WebDriver" in driver.title
+        # Find the ranking table
+        ranking_table = driver.find_element(By.ID, "ranking-table")
+
+        # Parse each player with their rank from the table
+        rankings = [
+            parse_player_row(row)
+            for row in ranking_table.find_elements(By.CLASS_NAME, "player-row")
+        ]
+
+        print(rankings)
 
 
 if __name__ == "__main__":
