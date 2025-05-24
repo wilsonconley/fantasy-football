@@ -13,8 +13,8 @@ tasks:
   lint:
     desc: Run lint
     cmds:
-      - ruff check
+      - uv run ruff check
   typecheck:
     desc: Run typecheck
     cmds:
-      - mypy .
+      - uv run mypy .
