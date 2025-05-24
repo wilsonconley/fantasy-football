@@ -5,3 +5,11 @@ tasks:
     desc: Run application
     cmds:
       - uv run main.py
+  check:
+    desc: Run CI checks
+    cmds:
+      - task: lint
+  lint:
+    desc: Run lint
+    cmds:
+      - ruff check

@@ -4,4 +4,7 @@ version = "0.1.0"
 description = "A web scraper for fantasy football ranking and analysis."
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["selenium~=4.33.0"]
+dependencies = [
+    "ruff>=0.11.11",
+    "selenium~=4.33.0",
+]
