@@ -1,5 +1,17 @@
 # fantasy-football
 
+This application will scrape multiple fantasy football websites to gather
+weekly rankings across various sources. The rankings and projected point values
+will be averaged together in order to provide an unbiased, aggregated ranking
+to help you set your lineups week to week.
+
+The application currently pulls rankings from the following websites:
+
+- [FantasyPros](https://www.fantasypros.com/)
+
+Once the data has been collected, it will be sent to DynamoDB so it can be
+stored and tracked.
+
 ## Prerequisites
 
 Before proceeding, install the following components on your system:
