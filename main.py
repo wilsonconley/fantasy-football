@@ -24,7 +24,7 @@ def selenium_driver() -> t.Iterator[WebDriver]:
 
 def scrape(websites: t.Sequence[BaseScraper]) -> t.Mapping[Player, t.Sequence[Ranking]]:
     """Scrape all websites to aggregate rankings."""
-    rankings: t.Mapping[Player, t.Sequence[Ranking]] = {}
+    rankings: dict[Player, list[Ranking]] = {}
     with selenium_driver() as driver:
         for website in websites:
             for player, ranking in website.load(driver).items():

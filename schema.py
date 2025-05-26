@@ -34,7 +34,7 @@ class DBRanking:
     proj_pts: Decimal
 
 
-@dataclass
+@dataclass(frozen=True)
 class DBSchema:
     name: str
     pos: str
@@ -49,13 +49,13 @@ class DBItem(DBSchema):
     rankings: t.Mapping[str, DBRanking]
 
     @property
-    def avg_rank(self) -> Decimal:
+    def avg_rank(self) -> Decimal:  # type: ignore[override]
         ranks = [x.rank for x in self.rankings.values()]
         avg = sum(ranks) / len(ranks)
         return Decimal(str(avg))
 
     @property
-    def avg_proj_pts(self) -> Decimal:
+    def avg_proj_pts(self) -> Decimal:  # type: ignore[override]
         proj_pts = [x.proj_pts for x in self.rankings.values()]
         avg = sum(proj_pts) / len(proj_pts)
         return Decimal(str(avg))
