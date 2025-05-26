@@ -1,6 +1,7 @@
 import enum
 import typing as t
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from decimal import Decimal
 
 Website: t.TypeAlias = str
 
@@ -28,9 +29,33 @@ class Player:
 
 
 @dataclass(frozen=True)
-class DBItem:
-    # TODO: pydantic model?
+class DBRanking:
+    rank: int
+    proj_pts: Decimal
 
+
+@dataclass
+class DBSchema:
     name: str
     pos: str
-    rankings: t.Mapping[str, t.Any]
+    rankings: t.Mapping[str, DBRanking]
+    avg_rank: Decimal = field(init=False)
+    avg_proj_pts: Decimal = field(init=False)
+
+
+class DBItem(DBSchema):
+    name: str
+    pos: str
+    rankings: t.Mapping[str, DBRanking]
+
+    @property
+    def avg_rank(self) -> Decimal:
+        ranks = [x.rank for x in self.rankings.values()]
+        avg = sum(ranks) / len(ranks)
+        return Decimal(str(avg))
+
+    @property
+    def avg_proj_pts(self) -> Decimal:
+        proj_pts = [x.proj_pts for x in self.rankings.values()]
+        avg = sum(proj_pts) / len(proj_pts)
+        return Decimal(str(avg))

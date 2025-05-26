@@ -11,7 +11,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 import db
 from base import BaseScraper
 from fantasypros import FantasyPros
-from schema import Player, Ranking, DBItem
+from schema import Player, Ranking, DBItem, DBRanking
 
 
 @contextlib.contextmanager
@@ -40,7 +40,7 @@ def main():
     season = "2025"
     week = "week_1"
 
-    # Aggregate ranking websites
+    # Scrape all ranking websites
     websites = [
         FantasyPros(),
     ]
@@ -52,13 +52,13 @@ def main():
             table.put_item(
                 Item=asdict(
                     DBItem(
-                        player.name,
-                        player.pos.name,
-                        {
-                            ranking.website: {
-                                "rank": ranking.rank,
-                                "proj_pts": Decimal(str(ranking.proj_pts)),
-                            }
+                        name=player.name,
+                        pos=player.pos.name,
+                        rankings={
+                            ranking.website: DBRanking(
+                                rank=ranking.rank,
+                                proj_pts=Decimal(str(ranking.proj_pts)),
+                            )
                             for ranking in rankings
                         },
                     )
