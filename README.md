@@ -54,24 +54,24 @@ npm install
 
 ## Usage
 
-1. Start the backend server:
+1. To scrape new rankings:
+
+```shell
+task scrape
+```
+
+2. Start the backend server:
 
 ```shell
 cd backend
 npm start
 ```
 
-2. Start the frontend development server:
+3. Start the frontend UI:
 
 ```shell
 cd frontend
 npm start
-```
-
-3. To scrape new rankings:
-
-```shell
-task scrape
 ```
 
 The application will be available at http://localhost:3000
