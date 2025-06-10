@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Paper,
@@ -11,8 +11,8 @@ import {
   Typography,
   CircularProgress,
   Box,
-} from '@mui/material';
-import axios from 'axios';
+} from "@mui/material";
+import axios from "axios";
 
 function App() {
   const [rankings, setRankings] = useState([]);
@@ -22,10 +22,10 @@ function App() {
   useEffect(() => {
     const fetchRankings = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/rankings');
+        const response = await axios.get("http://localhost:3001/api/rankings");
         setRankings(response.data);
       } catch (err) {
-        setError('Failed to fetch rankings');
+        setError("Failed to fetch rankings");
       } finally {
         setLoading(false);
       }
@@ -36,7 +36,12 @@ function App() {
 
   if (loading) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+      >
         <CircularProgress />
       </Box>
     );
@@ -44,7 +49,12 @@ function App() {
 
   if (error) {
     return (
-      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+      >
         <Typography color="error">{error}</Typography>
       </Box>
     );
@@ -69,7 +79,7 @@ function App() {
           </TableHead>
           <TableBody>
             {rankings.map((ranking, index) => (
-              <TableRow key={index}>
+              <TableRow key={ranking.name}>
                 <TableCell>{index + 1}</TableCell>
                 <TableCell>{ranking.name}</TableCell>
                 <TableCell>{ranking.pos}</TableCell>

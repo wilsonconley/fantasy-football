@@ -18,3 +18,4 @@ tasks:
     cmds:
       - task: scraper:check
       - task: backend:check
+      - task: frontend:check
