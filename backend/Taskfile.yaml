@@ -1,0 +1,15 @@
+version: "3"
+
+tasks:
+  run:
+    desc: Run server
+    cmds:
+      - npm start
+  check:
+    desc: Run CI checks
+    cmds:
+      - task: lint
+  lint:
+    desc: Run lint
+    cmds:
+      - npm run lint

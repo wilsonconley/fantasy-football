@@ -4,6 +4,9 @@ includes:
   scraper:
     taskfile: ./scraper/Taskfile.yaml
     dir: ./scraper
+  backend:
+    taskfile: ./backend/Taskfile.yaml
+    dir: ./backend
 
 tasks:
   scrape:
@@ -14,3 +17,4 @@ tasks:
     desc: Run CI checks
     cmds:
       - task: scraper:check
+      - task: backend:check
