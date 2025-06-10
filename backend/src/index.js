@@ -28,7 +28,13 @@ app.get("/api/rankings", async (req, res) => {
     });
 
     const result = await docClient.send(command);
-    res.json(result.Items);
+
+    // Sort the items by avg_rank in ascending order
+    const sortedItems = result.Items.sort(
+      (a, b) => a.avg_proj_pts - b.avg_proj_pts
+    );
+
+    res.json(sortedItems);
   } catch (error) {
     console.error("Error fetching rankings:", error);
     res.status(500).json({ error: "Failed to fetch rankings" });
