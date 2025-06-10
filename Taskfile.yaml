@@ -7,6 +7,9 @@ includes:
   backend:
     taskfile: ./backend/Taskfile.yaml
     dir: ./backend
+  frontend:
+    taskfile: ./frontend/Taskfile.yaml
+    dir: ./frontend
 
 tasks:
   scrape:
