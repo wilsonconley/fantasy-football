@@ -12,6 +12,14 @@ The application currently pulls rankings from the following websites:
 Once the data has been collected, it will be sent to DynamoDB so it can be
 stored and tracked.
 
+## Project Structure
+
+The project consists of three main components:
+
+- `scraper/`: Python-based scraper that collects fantasy football rankings
+- `backend/`: Express.js server that serves the data to the frontend
+- `frontend/`: React application that displays the rankings in a user-friendly interface
+
 ## Prerequisites
 
 Before proceeding, install the following components on your system:
@@ -19,19 +27,51 @@ Before proceeding, install the following components on your system:
 - [Task](https://taskfile.dev/installation/)
 - [uv](https://github.com/astral-sh/uv)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+- [Node.js](https://nodejs.org/) (v18 or later)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
 ## Setup
 
-To save the data to DynamoDB, you'll first need to configure your AWS credentials:
+1. Configure AWS credentials:
 
 ```shell
 aws configure
 ```
 
+2. Install backend dependencies:
+
+```shell
+cd backend
+npm install
+```
+
+3. Install frontend dependencies:
+
+```shell
+cd frontend
+npm install
+```
+
 ## Usage
 
-To scrape the rankings, simply run the script:
+1. Start the backend server:
+
+```shell
+cd backend
+npm start
+```
+
+2. Start the frontend development server:
+
+```shell
+cd frontend
+npm start
+```
+
+3. To scrape new rankings:
 
 ```shell
 task scrape
 ```
+
+The application will be available at http://localhost:3000
