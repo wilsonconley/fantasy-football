@@ -33,5 +33,5 @@ aws configure
 To scrape the rankings, simply run the script:
 
 ```shell
-task run
+task scrape
 ```

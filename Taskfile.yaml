@@ -1,20 +1,16 @@
-version: '3'
+version: "3"
+
+includes:
+  scraper:
+    taskfile: ./scraper/Taskfile.yaml
+    dir: ./scraper
 
 tasks:
-  run:
-    desc: Run application
+  scrape:
+    desc: Run web scrapers
     cmds:
-      - uv run main.py
+      - task: scraper:run
   check:
     desc: Run CI checks
     cmds:
-      - task: lint
-      - task: typecheck
-  lint:
-    desc: Run lint
-    cmds:
-      - uv run ruff check
-  typecheck:
-    desc: Run typecheck
-    cmds:
-      - uv run mypy .
+      - task: scraper:check

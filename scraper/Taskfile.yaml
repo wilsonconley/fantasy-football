@@ -1,0 +1,20 @@
+version: "3"
+
+tasks:
+  run:
+    desc: Run application
+    cmds:
+      - uv run main.py
+  check:
+    desc: Run CI checks
+    cmds:
+      - task: lint
+      - task: typecheck
+  lint:
+    desc: Run lint
+    cmds:
+      - uv run ruff check
+  typecheck:
+    desc: Run typecheck
+    cmds:
+      - uv run mypy . --explicit-package-bases
