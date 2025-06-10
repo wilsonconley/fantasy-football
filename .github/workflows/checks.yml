@@ -11,6 +11,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Install backend deps
+        run: |
+          cd backend && npm install
+      - name: Install frontend deps
+        run: |
+          cd frontend && npm install
       - name: Set up uv
         run: |
           curl -LsSf https://astral.sh/uv/install.sh | sh
