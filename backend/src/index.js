@@ -31,7 +31,7 @@ app.get("/api/rankings", async (req, res) => {
 
     // Sort the items by avg_rank in ascending order
     const sortedItems = result.Items.sort(
-      (a, b) => a.avg_proj_pts - b.avg_proj_pts
+      (a, b) => a.avg_proj_pts - b.avg_proj_pts // eslint-disable-line comma-dangle
     );
 
     res.json(sortedItems);
